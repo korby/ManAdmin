@@ -48,7 +48,7 @@ dashicons-welcome-learn-more" );
             $data["text"] = $this->manager->get($_POST["old_version"])->text;
         }
         else if($_POST["manadmin_content"]) {
-            $data["text"] = $_POST["manadmin_content"];
+            $data["text"] = stripslashes($_POST["manadmin_content"]);
             $nowUtc = new \DateTime( 'now',  new \DateTimeZone( 'UTC' ));
             $nowUtc->setTimezone( new \DateTimeZone( 'Europe/Paris' ) );
             $data["datetime"] = $nowUtc->format('Y-m-d H:i:s');
