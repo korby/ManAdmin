@@ -1,7 +1,7 @@
 === Man Admin ===
 Contributors: acianfa@gmail.com
-Donate link: http://example.com/
-Tags: comments, spam
+Donate link: http://wordpress.cianfarani.fr/
+Tags: admin panel
 Requires at least: 3.9
 Tested up to: 4.3
 Stable tag: 4.3
