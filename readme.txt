@@ -23,6 +23,9 @@ After installation, a new menu appear in back office named "Manual".
 
 == Changelog ==
 
+= 0.2 =
+* Completed readme.
+
 = 0.1 =
 * First version.
 
