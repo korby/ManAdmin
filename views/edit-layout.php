@@ -60,6 +60,44 @@
         </div>
     </div>
 </div>
+
+<div id="postbox-container-2" class="postbox-container">
+    <div style="" id="side-sortables" class="meta-box-sortables ui-sortable"><div id="submitdiv" class="postbox ">
+            <h3 class="hndle ui-sortable-handle"><span><?php echo __("Automatic content", "man-admin"); ?></span></h3>
+            <div class="inside">
+                <div class="submitbox" id="submitpost">
+                    <div id="major-publishing-actions">
+                        <div id="publishing-action">
+                            <span class="spinner"></span>
+                            <input name="original_publish" id="original_publish" value="Publier" type="hidden">
+                            <?php
+                            if($_COOKIE["visited"]) {
+                                $value = __("Stop recording", "man-admin");
+                                $name = "stop_record";
+                            }
+                            else {
+                                $value = __("Record now", "man-admin");
+                                $name = "start_record";
+                            }
+                            ?>
+                            <input name="<?php echo $name ?>" id="publish" class="button button-primary button-large" value="<?php echo $value; ?>" type="submit">
+                            <?php
+                            if($_COOKIE["visited"]) {
+                                echo "<div><a target='_blank' href='".get_admin_url()."'>".__("Browse in a new window", "man-admin")."</a></div>";
+                            }
+                            ?>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div id="misc-publishing-actions">
+                        <div class="misc-pub-section misc-pub-post-status">
+                                <?php echo __("Here you can open a new window and record all your actions in the manual text area", "man-admin"); ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 <!--// STOP POSTBOX CONTAINER //-->
 
 

@@ -12,16 +12,21 @@ Editable manual for Admin panel
 
 == Description ==
 
-A simple back office usage's manual area, accessible by users and editable by administrators.
+Make a manual of the Admin panel easily and quickly.
+This plugin offers a simple Admin panel usage's manual page, readable by editors and editable by administrators.
+You can insert Admin panel's menus and actions automatically by using recorder feature.
 
 == Installation ==
 
 1. download man-admin.zip
-2. install and active the plugin via your back office (www.youwordpress.com/wp-admin/plugin-install.php?tab=upload)
+2. install and active the plugin via your back office (www.yourwordpress.com/wp-admin/plugin-install.php?tab=upload)
 
 After installation, a new menu appear in back office named "Manual".
 
 == Changelog ==
+
+= 0.3 =
+* Added Automatic content feature.
 
 = 0.2 =
 * Completed readme.

@@ -8,6 +8,7 @@
 class Manadmin {
 
     public $admin;
+    public $path_visited;
 
     public function __construct()
     {
@@ -68,6 +69,8 @@ class Manadmin {
 
     public function view($template, array $data = array())
     {
+        global $menu;
+        global $submenu;
         $tpl_dir = 'views/';
         $extension = '-layout.php';
         require $tpl_dir.$template.$extension;
