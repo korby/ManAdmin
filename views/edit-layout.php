@@ -92,7 +92,7 @@
 
                     <div id="misc-publishing-actions">
                         <div class="misc-pub-section misc-pub-post-status">
-                                <?php echo __("Here you can open a new window and record all your actions in the manual text area", "man-admin"); ?>
+                                <?php echo __("Here you can open a new window and record all your actions in the manual text area. <b>Firefox</b> is recommanded.", "man-admin"); ?>
                         </div>
                     </div>
                 </div>

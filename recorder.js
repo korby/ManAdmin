@@ -1,5 +1,6 @@
-debug=false ;
+debug=true ;
 jQuery( document ).ready(function() {
+
     jQuery(document).on("click", function (e) {
 
         if(jQuery.inArray(e.currentTarget.activeElement.nodeName, ["DIV", "BODY"]) == -1) {
@@ -28,13 +29,23 @@ jQuery( document ).ready(function() {
             }
 
         } else if(e.originalEvent) {
-            type = jQuery(e.originalEvent.explicitOriginalTarget).prop('nodeName')
-            name = jQuery(e.originalEvent.explicitOriginalTarget).text()
-            if(jQuery(e.originalEvent.explicitOriginalTarget).attr("value")) {
-                name += jQuery(e.originalEvent.explicitOriginalTarget).attr("value")
+            if(e.originalEvent.srcElement) {
+                target = e.originalEvent.srcElement;
+            } else {
+                target = e.originalEvent.explicitOriginalTarget;
+            }
+            type = jQuery(target).prop('nodeName')
+
+            name = jQuery(target).text()
+            if(jQuery(target).attr("value")) {
+                name += jQuery(target).attr("value")
             }
 
             record("Press-" + name);
+        } else {
+            if(debug) {
+                alert(JSON.stringify(jQuery(e.handleObj).nodeName));
+            }
         }
         if(debug) {
             console.debug(type + " > " + name);

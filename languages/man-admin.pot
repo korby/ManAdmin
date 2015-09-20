@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-20 10:14+0200\n"
+"POT-Creation-Date: 2015-09-20 18:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,7 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: class.manadmin-admin.php:29 class.manadmin-admin.php:108
+#: class.manadmin-admin.php:29 class.manadmin-admin.php:112
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
@@ -88,5 +88,5 @@ msgstr ""
 #: views/edit-layout.php:95
 msgid ""
 "Here you can open a new window and record all your actions in the manual "
-"text area"
+"text area. <b>Firefox</b> is recommanded."
 msgstr ""
