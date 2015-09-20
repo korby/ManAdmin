@@ -1,20 +1,48 @@
-debug=false;
+debug=false ;
 jQuery( document ).ready(function() {
-    jQuery(document).on("click", "a", function () {
-        menuName = jQuery( this).text();
-        menuHref = jQuery( this).attr("href")
-        parent = getParent(jQuery( this))
-        record("Click-" + parent + menuName + "|" + menuHref);
-    });
+    jQuery(document).on("click", function (e) {
 
-    jQuery(document).on("click", "button", function () {
-        buttonName = jQuery( this).text();
-        record("Press-" + buttonName);
-    });
+        if(jQuery.inArray(e.currentTarget.activeElement.nodeName, ["DIV", "BODY"]) == -1) {
+            type = jQuery(e.currentTarget.activeElement).prop('nodeName')
+            if(type ==  "A") {
+                name = jQuery(e.currentTarget.activeElement).text();
+                if(jQuery(e.currentTarget.activeElement).attr("value")) {
+                    name += jQuery(e.currentTarget.activeElement).attr("value")
+                }
+                parent = ""
+                parent = getParent(jQuery(e.currentTarget.activeElement))
+                record("Click-" + parent + name + "|" + jQuery(e.currentTarget.activeElement).attr("href"));
+            }
+            if(type ==  "SELECT") {
+                jQuery(e.currentTarget.activeElement).find('option').each(function(){
+                    if(jQuery(this).val() == "-1"){
+                        name = jQuery(this).text();
+                    }
+                });
 
-    jQuery(document).on("click", "input[type='submit']", function () {
-        buttonName = jQuery( this).attr("value");
-        record("Press-" + buttonName);
+                if(jQuery(e.currentTarget.activeElement).find(":selected").attr("value") != "-1") {
+
+                    choice = jQuery(e.currentTarget.activeElement).find(":selected").text()
+                    record("Select-" + name + "|[" +choice + "]")
+                }
+            }
+
+        } else if(e.originalEvent) {
+            type = jQuery(e.originalEvent.explicitOriginalTarget).prop('nodeName')
+            name = jQuery(e.originalEvent.explicitOriginalTarget).text()
+            if(jQuery(e.originalEvent.explicitOriginalTarget).attr("value")) {
+                name += jQuery(e.originalEvent.explicitOriginalTarget).attr("value")
+            }
+
+            record("Press-" + name);
+        }
+        if(debug) {
+            console.debug(type + " > " + name);
+            if(type !=  "SELECT") {
+                alert("Show js console to see debug");
+            }
+        }
+
     });
 
 });
@@ -24,7 +52,7 @@ function getParent(a) {
         menuParentHref = a.parent().parent().parent().find("a").first().attr("href")
         menuParentName = a.parent().parent().parent().find("a").first().text()
 
-        if(menuParentName == menuName || menuParentHref == "index.php") {
+        if(menuParentName == a.text() || menuParentHref == "index.php") {
             return "";
         } else {
             return menuParentName + "|" + menuParentHref + ",";
@@ -40,7 +68,13 @@ function record(item) {
     itemSanitized = item.replace(/\t/g, '');
     itemSanitized = item.toString().trim().replace(/(\r\n|\n|\r)/g,"");
     if(debug) {
-        alert(itemSanitized);
+        if (item.indexOf("Select") == -1) {
+            alert(itemSanitized);
+        } else {
+
+            console.debug(itemSanitized)
+        }
+
     }
     document.cookie = "visited=" + getCookie() + "@" + itemSanitized;
 }

@@ -4,7 +4,7 @@ Donate link: http://wordpress.cianfarani.fr/
 Tags: admin panel
 Requires at least: 3.9
 Tested up to: 4.3
-Stable tag: 0.3
+Stable tag: 0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,6 +25,10 @@ After installation, a new menu appear in back office named "Manual".
 
 == Changelog ==
 
+= 0.4 =
+* Now catching all action's types.
+* Fixed one bug
+
 = 0.3 =
 * Added Automatic content feature.
 
@@ -37,3 +41,6 @@ After installation, a new menu appear in back office named "Manual".
 == Upgrade Notice ==
 
 No upgrade available right now.
+
+== Todo list ==
+Deal with select multiple and radios when catching actions

@@ -38,13 +38,11 @@ dashicons-welcome-learn-more" );
     private function format_visit() {
         $excluded_patterns = array("manadmin", __("Stop recording", "man-admin"), __("Record now", "man-admin"), __("Browse in a new window", "man-admin"));
         $cnt = $this->manager->path_visited;
-        $cnt = str_replace("Click-",__("Click on "), $cnt);
-        $cnt = str_replace("Press-",__("Press "), $cnt);
         $cnt = explode("@", $cnt);
         array_shift($cnt);
         $path = array();
         foreach($cnt as $row) {
-            $links = array();
+
             $match = false;
             foreach($excluded_patterns as $pattern) {
                 if(strpos($row, $pattern) !== false) {
@@ -54,19 +52,58 @@ dashicons-welcome-learn-more" );
             if($match) {
                 continue;
             }
-            foreach(explode(",", $row) as $line) {
-                $link = explode("|", $line);
-                if(count($link) == 2) {
-                    $links[] = "<a href='".$link[1]."'>".$link[0]."</a>";
-                } else {
-                    $links[] = $link[0];
-                }
+
+            if (strpos($row, "Click-") === 0) {
+                $path[] = $this->format_a($row);
+            } else if (strpos($row, "Press-") === 0) {
+                $path[] = $this->format_press($row);
+            } else if (strpos($row, "Select-") === 0) {
+                $path[] = $this->format_select($row);
             }
-            $path[] = implode(" > ", $links);
+
         }
 
+        $visited = implode("<br>",$path);
 
-        return implode("<br>",$path)."<br>";
+        return $visited."<br>";
+    }
+
+    private function format_a ($row) {
+        // pattern row = Click-Atext|Ahref or Click-AParenttext,Atext|Ahref
+        $row = str_replace("Click-", "", $row);
+        $links = array();
+        foreach(explode(",", $row) as $line) {
+            $link = explode("|", $line);
+            if(count($link) == 2) {
+                $links[] = $this->bold_text("<a target='_blank' href='".$link[1]."'>".$link[0]."</a>");
+            } else {
+                $links[] = $this->bold_text($link[0]);
+            }
+        }
+        $string_formatted = __("Click on", "man-admin")." ".implode(" > ", $links);
+
+        return $string_formatted;
+    }
+
+    private function format_select ($row) {
+        // pattern row = Select-DefaultOPtionName|[OptionSelectedValue]
+        $name = substr($row, strpos($row, "Select-") + 7, strpos($row, "|") -8);
+        $choice = substr($row, strpos($row, "[") + 1, strpos($row, "]") - strpos($row, "[") -1);
+        $string_formatted = __("In the drop-down list" , "man-admin")." ".$this->bold_text($name)." ".__("select " , "man-admin")." ".$this->bold_text($choice);
+
+        return $string_formatted;
+    }
+
+    private function format_press ($row) {
+        // pattern row = Press-ButtonName
+        $name = substr($row, strpos($row, "Press-") + 6, strlen($row));
+        $string_formatted = __("Press" , "man-admin")." ".$this->bold_text($name);
+
+        return $string_formatted;
+    }
+
+    private function bold_text ($string) {
+        return "<strong><i>".$string."</i></strong>";
     }
     public function edit()
     {

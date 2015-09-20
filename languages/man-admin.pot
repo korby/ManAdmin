@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-15 11:24+0200\n"
+"POT-Creation-Date: 2015-09-20 10:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,42 +18,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: class.manadmin-admin.php:19 class.manadmin-admin.php:21
-#: class.manadmin-admin.php:19 class.manadmin-admin.php:21
 msgid "Manual"
 msgstr ""
 
-#: class.manadmin-admin.php:21 class.manadmin-admin.php:21
+#: class.manadmin-admin.php:21
 msgid "Read"
 msgstr ""
 
-#: class.manadmin-admin.php:22 class.manadmin-admin.php:22
+#: class.manadmin-admin.php:22
 msgid "Manual edition"
 msgstr ""
 
 #: class.manadmin-admin.php:22 views/edit-layout.php:32
-#: class.manadmin-admin.php:22 views/edit-layout.php:32
 msgid "Edit"
 msgstr ""
 
-#: class.manadmin-admin.php:29 class.manadmin-admin.php:42
-#: class.manadmin-admin.php:29 class.manadmin-admin.php:75
+#: class.manadmin-admin.php:29 class.manadmin-admin.php:108
 msgid "You do not have sufficient permissions to access this page."
-msgstr ""
-
-#: views/edit-layout.php:39 views/edit-layout.php:39
-msgid "Save"
-msgstr ""
-
-#: views/edit-layout.php:45 views/edit-layout.php:45
-msgid "Load old version"
-msgstr ""
-
-#: views/edit-layout.php:48 views/edit-layout.php:48
-msgid "Select"
-msgstr ""
-
-#: views/edit-layout.php:56 views/edit-layout.php:56
-msgid "Load"
 msgstr ""
 
 #: class.manadmin-admin.php:39 views/edit-layout.php:75
@@ -68,12 +49,36 @@ msgstr ""
 msgid "Browse in a new window"
 msgstr ""
 
-#: class.manadmin-admin.php:41
-msgid "Click on "
+#: class.manadmin-admin.php:83
+msgid "Click on"
 msgstr ""
 
-#: class.manadmin-admin.php:42
-msgid "Press "
+#: class.manadmin-admin.php:92
+msgid "In the drop-down list"
+msgstr ""
+
+#: class.manadmin-admin.php:92
+msgid "select "
+msgstr ""
+
+#: class.manadmin-admin.php:100
+msgid "Press"
+msgstr ""
+
+#: views/edit-layout.php:39
+msgid "Save"
+msgstr ""
+
+#: views/edit-layout.php:45
+msgid "Load old version"
+msgstr ""
+
+#: views/edit-layout.php:48
+msgid "Select"
+msgstr ""
+
+#: views/edit-layout.php:56
+msgid "Load"
 msgstr ""
 
 #: views/edit-layout.php:66
