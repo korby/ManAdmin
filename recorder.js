@@ -1,4 +1,4 @@
-debug=true ;
+debug=false ;
 jQuery( document ).ready(function() {
 
     jQuery(document).on("click", function (e) {
