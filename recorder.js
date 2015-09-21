@@ -1,9 +1,45 @@
 debug=false ;
 jQuery( document ).ready(function() {
 
+    // For chrome compatibility, handle these elements this way
+    jQuery(document).on("click", 'button', function (e) {
+        name = jQuery(this).text();
+
+        record("Press-" + name);
+        return;
+    });
+    jQuery(document).on("click", "input[type='submit']", function (e) {
+        name = jQuery(this).text();
+        if(jQuery(this).attr("value")) {
+            name += jQuery(this).attr("value")
+        }
+
+        record("Press-" + name);
+        return;
+    });
+
+    // For chrome compatibility, handle select this way
+    jQuery(document).on("mousemove", function () {
+        if(triggered_select != "") {
+
+            jQuery(triggered_select).find('option').each(function(){
+                if(jQuery(this).val() == "-1"){
+                    name = jQuery(this).text();
+                }
+            });
+            if(jQuery(triggered_select).find(":selected").attr("value") != "-1") {
+
+                choice = jQuery(triggered_select).find(":selected").text()
+
+                record("Select-" + name + "|[" +choice + "]")
+            }
+
+        }
+        triggered_select = "";
+    });
     jQuery(document).on("click", function (e) {
 
-        if(jQuery.inArray(e.currentTarget.activeElement.nodeName, ["DIV", "BODY"]) == -1) {
+        if(jQuery.inArray(e.currentTarget.activeElement.nodeName, ["DIV", "BODY", "BUTTON", "SUBMIT"]) == -1) {
             type = jQuery(e.currentTarget.activeElement).prop('nodeName')
             if(type ==  "A") {
                 name = jQuery(e.currentTarget.activeElement).text();
@@ -14,39 +50,22 @@ jQuery( document ).ready(function() {
                 parent = getParent(jQuery(e.currentTarget.activeElement))
                 record("Click-" + parent + name + "|" + jQuery(e.currentTarget.activeElement).attr("href"));
             }
+            // For chrome compatibility, handle select this way
             if(type ==  "SELECT") {
-                jQuery(e.currentTarget.activeElement).find('option').each(function(){
-                    if(jQuery(this).val() == "-1"){
-                        name = jQuery(this).text();
-                    }
-                });
-
-                if(jQuery(e.currentTarget.activeElement).find(":selected").attr("value") != "-1") {
-
-                    choice = jQuery(e.currentTarget.activeElement).find(":selected").text()
-                    record("Select-" + name + "|[" +choice + "]")
-                }
+                triggered_select = jQuery(e.currentTarget.activeElement);
             }
 
-        } else if(e.originalEvent) {
-            if(e.originalEvent.srcElement) {
-                target = e.originalEvent.srcElement;
-            } else {
-                target = e.originalEvent.explicitOriginalTarget;
-            }
-            type = jQuery(target).prop('nodeName')
-
-            name = jQuery(target).text()
-            if(jQuery(target).attr("value")) {
-                name += jQuery(target).attr("value")
-            }
-
-            record("Press-" + name);
-        } else {
-            if(debug) {
-                alert(JSON.stringify(jQuery(e.handleObj).nodeName));
-            }
         }
+
+        excluded = ["A", "SELECT", "BUTTON", "INPUT"];
+        object_source = get_by_original_event(e);
+
+        if(jQuery.inArray(object_source[0], excluded) == -1 && jQuery.inArray(e.currentTarget.activeElement.nodeName, excluded) == -1){
+            object_source = get_by_original_event(e);
+            name = object_source[1];
+            record("Click-" + name);
+        }
+
         if(debug) {
             console.debug(type + " > " + name);
             if(type !=  "SELECT") {
@@ -57,6 +76,25 @@ jQuery( document ).ready(function() {
     });
 
 });
+
+function get_by_original_event(e) {
+    if(e.originalEvent) {
+
+        if(e.originalEvent.srcElement) {
+            target = e.originalEvent.srcElement;
+        } else {
+            target = e.originalEvent.explicitOriginalTarget;
+        }
+        type = jQuery(target).prop('nodeName')
+
+        name = jQuery(target).text()
+        if(jQuery(target).attr("value")) {
+            name += jQuery(target).attr("value")
+        }
+
+        return [type,name]
+    }
+}
 
 function getParent(a) {
     if(a.parent().parent().parent().parent() && a.parent().parent().parent().hasClass("wp-has-submenu")) {

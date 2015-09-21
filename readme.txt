@@ -4,7 +4,7 @@ Donate link: http://wordpress.cianfarani.fr/
 Tags: admin panel
 Requires at least: 3.9
 Tested up to: 4.3
-Stable tag: 0.4
+Stable tag: 0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,6 +24,9 @@ You can insert Admin panel's menus and actions automatically by using recorder f
 After installation, a new menu appear in back office named "Manual".
 
 == Changelog ==
+
+= 0.5 =
+* Compatibility with chrome for actions recorder
 
 = 0.4 =
 * Now catching all action's types.

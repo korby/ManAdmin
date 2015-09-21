@@ -2,7 +2,7 @@
 /*
 Plugin Name: ManAdmin
 Description: A simple back office usage's manual area, accessible by users and editable by administrators. Compatibility WP >= 3.8
-Version: 0.4
+Version: 0.5
 Author: André Cianfarani
 License: GPL2
 */
